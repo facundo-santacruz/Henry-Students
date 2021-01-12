@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, SafeAreaView, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Avatar, Title, Caption, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,25 +9,18 @@ import { useQuery } from '@apollo/client';
 import { GET_USER } from '../apollo/user';
 
 const Profile = ({ route, navigation }) => {
+    
+
+    console.log(route.params)
     const { loading, data, error } = useQuery(GET_USER, {
         variables: {
             email: route.params.email,
         }
     })
+    
     console.log(data)
     const handleProfileEdit = () => {
-        navigation.navigate('ProfileEdit', {
-            modifyData: {
-                username,
-                email,
-                firstName,
-                lastName,
-                image, 
-                cohorte, 
-                nationality,
-                phone
-            }
-        })
+        navigation.navigate('ProfileEdit', { data: data.users[0] })
     };
     if(loading){
         return (

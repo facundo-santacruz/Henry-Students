@@ -10,9 +10,9 @@ import Particles from './Particles';
 
 const ProfileEdit = ({ route, navigation }) => {
 
-    const [data, setData] = useState(route.params.modifyData);
+    const [data, setData] = useState(route.params.data);
     const [editProfile] = useMutation(EDIT_USER);
-
+    console.log(data)
     const handleSubmit = async (values) => {
         try {
             const response = await editProfile({
@@ -27,11 +27,7 @@ const ProfileEdit = ({ route, navigation }) => {
                 }
             })
             setData(response.data.editUser);
-            navigation.navigate('Profile', {
-                profileData: {
-                    users: [data],
-                }
-            })
+            navigation.navigate('Profile', { email: values.email });
         } catch (error) {
             console.log(error);    
         }
@@ -45,7 +41,7 @@ const ProfileEdit = ({ route, navigation }) => {
             <View style={styles.userInfoSection}>
                 <Formik
                     initialValues={{
-                        country: data.nationality || '',
+                        nationality: data.nationality || '',
                         firstName: data.firstName,
                         lastName: data.lastName,
                         username: data.username,
@@ -92,14 +88,14 @@ const ProfileEdit = ({ route, navigation }) => {
                                 onBlur={handleBlur('lastName')}
                                 value={values.lastName}
                             />
-                            {/* <Text style={styles.textLabel}>Usuario</Text>
+                            <Text style={styles.textLabel}>Usuario</Text>
                             <TextInput
                                 style={styles.textInput}
                                 placeholder="Nombre de Usuario"
                                 onChangeText={handleChange('username')}
                                 onBlur={handleBlur('username')}
                                 value={values.username}
-                            /> */}
+                            />
                             <Text style={styles.textLabel}>Email</Text>
                             <TextInput
                                 style={styles.textInput}
