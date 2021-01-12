@@ -86,7 +86,7 @@ export default function Welcome({ navigation }) {
                 <Text style={styles.title} sx={{fontSize: [30, 50]}}>{`Bienvenido ${firstName} ${lastName}!`}</Text>
                 <View style={styles.container}>
                     <View style={styles.boton} sx={{ width: [300, 600], height: [130, 200] }}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Profile', { user: username })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Profile', { email })}>
                             <Image
                                 source={require("../assets/materialEstudio2.jpg")}
                                 style={styles.tarjeta} sx={{ width: [300, 600], height: [130, 200] }}
