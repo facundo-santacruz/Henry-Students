@@ -29,8 +29,13 @@ export default function Login({ navigation }) {
         });
         const { errors, success, token } = response.data.login;
         if (success) {
-            localStorage.setItem('token', token);
-            localStorage.setItem('userEmail', values.email);
+            try {
+                AsyncStorage.setItem('token', token);
+                AsyncStorage.setItem('userEmail', values.email);
+                
+            } catch (error) {
+                
+            }
             navigation.navigate('Welcome');
         } else {
             if(errors){

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import {  Switch, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Image, View ,Text} from 'dripsy';
 import { Container } from '../styled-components/Container'
@@ -9,48 +9,61 @@ import {styles} from '../styles/WelcomeStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Menu from './MenuDesplegable';
 import Particles from './Particles';
-import moment from 'moment'
+import moment from 'moment';
 
 export default function Welcome({ navigation }) {
+    const [email, setEmail] = useState(null);
 
-   const email = localStorage.getItem('userEmail')
+    useEffect(() => {
+        const thereIsEmail = async () => {
+            try{
+                const x = await AsyncStorage.getItem('userEmail');
+                console.log(x);
+                setEmail(x);
+            }catch(er){
+                console.log(er)
+            }
+        }
+        thereIsEmail();
+    },[]);
 
     const { loading, data, error } = useQuery(GET_USER, {
         variables: {
             email,
         }
     })
-    const idMesa = localStorage.getItem('idMesa')
-    const cohorte = data?.users[0].cohorte;
-    const name = data?.users[0].firstName;
-    const userName = data?.users[0].username;
-    const cohorte2 = localStorage.setItem('Cohorte', cohorte);
-    const name2 = localStorage.setItem('name', name);
-    const userName2 = localStorage.setItem('userName', userName);
+    // const idMesa = localStorage.getItem('idMesa')
+    // const cohorte = data?.users[0].cohorte;
+    // const name = data?.users[0].firstName;
+    // const userName = data?.users[0].username;
+    // const cohorte2 = localStorage.setItem('Cohorte', cohorte);
+    // const name2 = localStorage.setItem('name', name);
+    // const userName2 = localStorage.setItem('userName', userName);
+    
     const fecha = moment().format('DD/MM/YYYY')
 
     const [removeMesa] = useMutation(REMOVE_MESA);
     async function handleLogout() {
-        if(localStorage.getItem('idMesa')){
-            await removeMesa({
-                variables: {
-                    username: userName,
-                    dia: fecha
-                }
-            })
-            localStorage.clear()
-        }
-        localStorage.clear()
+        // if(localStorage.getItem('idMesa')){
+        //     await removeMesa({
+        //         variables: {
+        //             username: userName,
+        //             dia: fecha
+        //         }
+        //     })
+        //     localStorage.clear()
+        // }
+        await AsyncStorage.clear();
         navigation.navigate('Home');
     }
 
-    function handleMesa() {
-        if(localStorage.getItem('idMesa')) {
-            return navigation.navigate('SalaDeMesaNew')
-        } else {
-            return navigation.navigate('PairProgramming')
-        }
-    }
+    // function handleMesa() {
+    //     if(localStorage.getItem('idMesa')) {
+    //         return navigation.navigate('SalaDeMesaNew')
+    //     } else {
+    //         return navigation.navigate('PairProgramming')
+    //     }
+    // }
 
 
     if(error) {
@@ -61,6 +74,7 @@ export default function Welcome({ navigation }) {
             <ActivityIndicator size={50} color="yellow" />
         </View>)
     } else {
+        const { firstName, lastName, username } = data?.users[0]
         return (
             <View style={styles.todo}>
                 <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: -1}}>
@@ -69,10 +83,10 @@ export default function Welcome({ navigation }) {
                 <View style={{zIndex: 5}}>
                     <Menu navigation={navigation} />
                 </View>
-                <Text style={styles.title} sx={{fontSize: [30, 50]}}>{'Bienvenido '+ name + '!'}</Text>
+                <Text style={styles.title} sx={{fontSize: [30, 50]}}>{`Bienvenido ${firstName} ${lastName}!`}</Text>
                 <View style={styles.container}>
                     <View style={styles.boton} sx={{ width: [300, 600], height: [130, 200] }}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileData: data })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Profile', { user: username })}>
                             <Image
                                 source={require("../assets/materialEstudio2.jpg")}
                                 style={styles.tarjeta} sx={{ width: [300, 600], height: [130, 200] }}
@@ -86,7 +100,7 @@ export default function Welcome({ navigation }) {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.boton} sx={{ width: [300, 600], height: [130, 200] }}>
-                        <TouchableOpacity onPress={handleMesa}>
+                        <TouchableOpacity>
                             <Image
                                 source={require("../assets/PairPrograming.jpg")}
                                 style={styles.tarjeta} sx={{ width: [300, 600], height: [130, 200] }}

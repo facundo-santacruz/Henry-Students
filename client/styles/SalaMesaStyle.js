@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     input:{
         // width: 200,
         borderBottomColor: 'gray',
-        borderBottomWidth: 'thin',
+        // borderBottomWidth: 'thin',
         marginLeft: 10,
         marginRight: 10,
         textAlign: "center"

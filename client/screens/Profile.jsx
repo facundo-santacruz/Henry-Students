@@ -7,7 +7,7 @@ import Particles from './Particles';
 import MenuDesplegable from './MenuDesplegable';
 
 const Profile = ({ route, navigation }) => {
-    const { username, email, firstName, lastName, image, cohorte, nationality, phone } = route.params.profileData.users[0];
+    
     const handleProfileEdit = () => {
         navigation.navigate('ProfileEdit', {
             modifyData: {

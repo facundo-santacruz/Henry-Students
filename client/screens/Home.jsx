@@ -9,15 +9,16 @@ export default function Home({ navigation }) {
 
     const findUser = async () => {
         try {
-            const value = await AsyncStorage.getItem('userEmail')
-            if(!value) {
-            navigation.navigate('PruebaBoton')
+            const value = await AsyncStorage.getItem('userEmail');
+            if(value){
+                navigation.navigate('Welcome')
+            }else{
+                navigation.navigate('PruebaBoton')
             }
-            else navigation.navigate('Welcome')
         } catch(e) {
             console.log(e)
         }
-        }
+    }
 
     return (
         <View style={styles.todo}>

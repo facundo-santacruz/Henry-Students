@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     tarjeta:{
         position: 'absolute', 
         borderRadius: 30, 
-        filter: "brightness(0.75)",
+        // filteSr: "brightness(0.75)",
         // backgroundColor: 'black',
         // opacity: 0.6
         
