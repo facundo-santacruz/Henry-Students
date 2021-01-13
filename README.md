@@ -12,13 +12,14 @@
     <img src="" alt="Henry App Logo" width="80" height="80">
   </a>
 
-## About The Project
-Henry app description
+# HENRY STUDENTS APP
 
 ### Built With
 
+* [Expo]()
 * [React Native]()
-* [Graphql]()
+* [Nodejs]()
+* [GraphQL]()
 * [MongoDB]()
 
 ## Getting Started
@@ -33,40 +34,55 @@ To get a local copy up and running follow these simple example steps.
   npm start
   ```
 
-### Installation
+## Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+1. Fork the Repo
+
+2. Open a terminal, select the place to clone the repo
+     ```sh
+     git clone https://github.com/your_username_/Project-Name.git
+     ```
+
+4. Insert into /api a file .env
+    ```sh
+     DATABASE_URL=mongodb+srv://Henry:KsxkYZazDHRcR5yI@cluster0.ytxso.mongodb.net/HenryApp?retryWrites=true&w=majority
+     ACCESS_TOKEN_SECRET={CHOOSE_YOUR_TOKEN_SECRET}
+     EMAIL={ENTER_YOUR_EMAIL}
+     PASSWORD={YOUR_EMAIL_ADRESS}
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+ 
+5. Go to the directory of the repo
+     ```sh
+     cd api
+     npm install
+     cd ..
+     cd client
+     npm install
    ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+   
+6. Start the aplication
+     ```sh
+     npm start
+     ```
+7. Open another terminal
+     ```sh
+     cd ..
+     cd api
+     npm start
+     ```
+
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+This app was designed to bring Henry's students together for Pair Programming meetings. Put them in a Cohort and get them involved
+in StandUp meetings with their respective PM.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+## Authors
 
-## Contributing
+Facundo Santacruz
+Eric Gomez
+Narela Acuña
+Bryan Plata
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 [contributors-shield]: https://img.shields.io/github/contributors/EricGomez29/HenryApp.svg?style=for-the-badge
 [contributors-url]: https://github.com/EricGomez29/HenryApp/graphs/contributors
