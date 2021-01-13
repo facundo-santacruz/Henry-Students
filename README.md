@@ -78,10 +78,10 @@ in StandUp meetings with their respective PM.
 
 ## Authors
 
-Facundo Santacruz
-Eric Gomez
-Narela Acuña
-Bryan Plata
+    Facundo Santacruz
+    Eric Gomez
+    Narela Acuña
+    Bryan Plata
 
 
 [contributors-shield]: https://img.shields.io/github/contributors/EricGomez29/HenryApp.svg?style=for-the-badge
