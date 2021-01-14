@@ -8,15 +8,15 @@ import MenuDesplegable from './MenuDesplegable';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../apollo/user';
 
+export const getUser = (email) => useQuery(GET_USER, {
+    variables: {
+        email,
+    },
+})
 const Profile = ({ route, navigation }) => {
-    
 
     console.log(route.params)
-    const { loading, data, error } = useQuery(GET_USER, {
-        variables: {
-            email: route.params.email,
-        }
-    })
+    const { loading, data, error } = getUser(route.params.email)
     
     console.log(data)
     const handleProfileEdit = () => {

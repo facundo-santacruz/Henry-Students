@@ -4,9 +4,10 @@ import { View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { Text } from 'react-native-paper';
 import { styles } from '../styles/ProfileEditStyles';
-import { EDIT_USER } from '../apollo/user';
+import { EDIT_USER, GET_USER } from '../apollo/user';
 import { useMutation } from '@apollo/client';
 import Particles from './Particles';
+import { getUser } from './Profile';
 
 const ProfileEdit = ({ route, navigation }) => {
 
@@ -24,9 +25,13 @@ const ProfileEdit = ({ route, navigation }) => {
                     cohorte: parseInt(values.cohorte),
                     nationality: values.nationality,
                     phone: values.phone,
-                }
-            })
+                }, 
+                refetchQueries: [{query: GET_USER, variables: {email: values.email}}]
+            }) 
+            
             setData(response.data.editUser);
+            console.log(response.data.editUser)
+            // console.log(getUser(values.email));
             navigation.navigate('Profile', { email: values.email });
         } catch (error) {
             console.log(error);    
